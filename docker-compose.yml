@@ -1,0 +1,50 @@
+version: "2.4"
+
+services:
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    ports:
+      - 8080:80
+    environment:
+      - "PGADMIN_DEFAULT_EMAIL=example@example.com"
+      - "PGADMIN_DEFAULT_PASSWORD=example"
+
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    ports:
+      - 8081:8081
+    environment:
+      - "REDIS_HOST=redis"
+      - "REDIS_PORT=6379"
+
+  db:
+    image: postgres:10.10-alpine
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U example"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    ports:
+      - 5432:5432
+    environment:
+      - "POSTGRES_DB=rails-app"
+      - "POSTGRES_USER=example"
+      - "POSTGRES_PASSWORD=example"
+    volumes:
+      - pg_data:/var/lib/postgresql/data:delegated
+
+  redis:
+    image: redis:5.0-alpine
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli -h 127.0.0.1 ping | grep -q '^PONG$$'"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    ports:
+      - 6379:6379
+    volumes:
+      - redis_data:/data:delegated
+
+volumes:
+  pg_data: {}
+  redis_data: {}
