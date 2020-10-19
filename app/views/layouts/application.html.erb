@@ -52,7 +52,7 @@
 
             <%#Verifica se o usuário está logado. É próprio do rails%>
             <% if user_signed_in? %>
-              <%= link_to 'Cadastrar', root_path, class: "navbar-item button is-dark" %>
+              <%= link_to 'Cadastrar curso', '#', class: "navbar-item button is-dark" %>
 
                <div class="navbar-item has-dropdown is-hoverable">
                 <%= link_to 'Minha Conta', edit_user_registration_path, class: "navbar-link" %>
