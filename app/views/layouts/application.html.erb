@@ -39,16 +39,16 @@
           <div class="navbar-item">
             <div class="field is-grouped">
 
-            <%# if cart_has_items %>
-              <%#= link_to cart_path(@cart), class:"navbar-item button is-primary" do %>
-              <%# <span class="icon is-small">
+            <% if cart_has_items %>
+              <%= link_to cart_path(@cart), class:"navbar-item button is-primary" do %>
+               <span class="icon is-small">
                 <i class="fa fa-shopping-cart"></i>
               </span>
-              <span>Carrinho %>
-                <%#= cart_count_over_one %>
-                <%# </span>  %>
-              <%# end %>
-            <%# end %>
+              <span>Carrinho
+                <%= cart_count_over_one %>
+                 </span> 
+              <% end %>
+            <% end %>
 
             <%#Verifica se o usuário está logado. É próprio do rails%>
             <% if user_signed_in? %>
