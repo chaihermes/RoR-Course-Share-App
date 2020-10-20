@@ -1,12 +1,23 @@
 class Course < ApplicationRecord
-
+    before_destroy :not_referenced_by_any_line_item
+    belongs_to :user, optional: true
+    has_many :line_items
     mount_uploader :image, ImageUploader
     serialize :image, JSON #config para SQLite
-    belongs_to :user, optional: true
 
     #Validações
     validates :title, :author, presence: true
     validates :description, length: { maximum: 1500, too_long: "%{count} caracteres é o máximo permitido."}
     validates :title, length: { maximum: 140, too_long: "%{count} caracteres é o máximo permitido."}
     validates :price, length: { maximum: 7 }
+
+    private
+
+    def not_referenced_by_any_line_item
+        unless line_items.empty?
+            errors.add(:base, "Itens presentes")
+            throw :abort
+        end
+    end
+    
 end
