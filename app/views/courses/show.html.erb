@@ -1,24 +1,51 @@
-<p id="notice"><%= notice %></p>
+<% content_for :body_class, 'bg-light' %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @course.title %>
-</p>
+<section class="section instrument-show">
+  <div class="columns">
+    <div class="column is-8">
 
-<p>
-  <strong>Author:</strong>
-  <%= @course.author %>
-</p>
+      <h1 class="title is-2"><%= @course.title %></h1>
 
-<p>
-  <strong>Description:</strong>
-  <%= @course.description %>
-</p>
+      <div class="feature-image">
+        <%= image_tag(@course.image_url(:default)) %>
+      </div>
 
-<p>
-  <strong>Price:</strong>
-  <%= @course.price %>
-</p>
+      <div class="content pa4 mt3 bg-white border-radius-3">
 
-<%= link_to 'Edit', edit_course_path(@course) %> |
-<%= link_to 'Back', courses_path %>
+      <h3 class="subtitle is-4">Descrição</h3>
+      <%= @course.description %>
+
+
+      <h3 class="subtitle is-4 pt5">Detalhes</h3>
+
+      <table class="table is-narrow">
+        <% if @course.title %>
+        <tr>
+          <td class="has-text-weight-bold">Descrição:</td>
+          <td><%= @course.description %></td>
+        </tr>
+        <% end %>
+
+        <% if @course.author %>
+          <tr>
+            <td class="has-text-weight-bold">Autor:</td>
+            <td><%= @course.author %></td>
+          </tr>
+        <% end %>
+
+      </table>
+    </div>
+    </div>
+    <div class="column is-3 is-offset-1">
+      <div class="bg-white pa4 border-radius-3">
+        <h4 class="title is-5 has-text-centered"><%= number_to_currency(@course.price) %></h4>
+        <p class="has-text-centered mb4">Autor <%= @course.user.username %></p>
+        <%= button_to 'Comprar', line_items_path(course_id: @course), class: 'button is-primary add-to-cart' %>
+      </div>
+    </div>
+  </div>
+
+  <% if course_author(@course) %>
+    <%= link_to 'Editar', edit_course_path(@course), class: 'button' %>
+  <% end %>
+</section>
