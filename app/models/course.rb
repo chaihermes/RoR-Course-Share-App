@@ -1,6 +1,7 @@
 class Course < ApplicationRecord
     before_destroy :not_referenced_by_any_line_item
     belongs_to :user, optional: true
+    belongs_to :discussion
     has_many :line_items
     mount_uploader :image, ImageUploader
     serialize :image, JSON #config para SQLite
