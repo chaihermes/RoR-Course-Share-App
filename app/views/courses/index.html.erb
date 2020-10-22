@@ -21,6 +21,7 @@
       <div class="pa3">
         <h3 class="fw7 f4 title"><%= link_to course.title, course %></h3>
         <p class="has-text-gray fg pt1">Criado por <%= course.user.username %></p>
+        <p class="has-text-gray fg pt1">Descrição <%= course.description %></p>
         <%# number_to_currency é próprio do rails, é um helper: %>
         <p class="f3 fw6 has-text-right pt2 price"> <%= number_to_currency(course.price) %> </p>
         <%= button_to 'Comprar', line_items_path(course_id: course), class: 'button is-primary add-to-cart' %>  
