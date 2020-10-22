@@ -5,5 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   #Relação das tabelas
-  has_many :courses
+  has_many :avaliations, dependent: :destroy
+  has_many :courses, through: :avaliations
 end
