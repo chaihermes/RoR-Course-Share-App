@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201020010133) do
+ActiveRecord::Schema.define(version: 20201022131459) do
+
+  create_table "avaliations", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.integer "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "channel_id"
+    t.integer "course_id"
+  end
 
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -26,7 +37,16 @@ ActiveRecord::Schema.define(version: 20201020010133) do
     t.datetime "updated_at", null: false
     t.string "image"
     t.integer "user_id"
+    t.integer "avaliation_id"
   end
+
+  # create_table "discussions", force: :cascade do |t|
+  #   t.string "title"
+  #   t.text "content"
+  #   t.datetime "created_at", null: false
+  #   t.datetime "updated_at", null: false
+  #   t.integer "user_id"
+  # end
 
   create_table "line_items", force: :cascade do |t|
     t.integer "course_id"
@@ -36,6 +56,22 @@ ActiveRecord::Schema.define(version: 20201020010133) do
     t.integer "quantity", default: 1
     t.index ["cart_id"], name: "index_line_items_on_cart_id"
     t.index ["course_id"], name: "index_line_items_on_course_id"
+  end
+
+  # create_table "replies", force: :cascade do |t|
+  #   t.text "reply"
+  #   t.datetime "created_at", null: false
+  #   t.datetime "updated_at", null: false
+  #   t.integer "discussion_id"
+  #   t.integer "user_id"
+  # end
+
+  create_table "responds", force: :cascade do |t|
+    t.text "respond"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "avaliation_id"
+    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -5,6 +5,10 @@ class Course < ApplicationRecord
     mount_uploader :image, ImageUploader
     serialize :image, JSON #config para SQLite
 
+    #Para a parte de avaliações
+    has_many :avaliations
+    has_many :users, through: :avaliations
+
     #Validações
     validates :title, :author, presence: true
     validates :description, length: { maximum: 1500, too_long: "%{count} caracteres é o máximo permitido."}
