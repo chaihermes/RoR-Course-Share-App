@@ -1,20 +1,23 @@
 class AvaliationsController < ApplicationController
   before_action :set_avaliation, only: [:show, :edit, :update, :destroy]
+  before_action :find_channels, only: [:index, :show, :new, :edit]
+  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /avaliations
   # GET /avaliations.json
   def index
-    @avaliations = Avaliation.all
+    @avaliations = Avaliation.all.order('created_at desc')
   end
 
   # GET /avaliations/1
   # GET /avaliations/1.json
   def show
+    @avaliations = Avaliation.all.order('created_at desc')
   end
 
   # GET /avaliations/new
   def new
-    @avaliation = Avaliation.new
+    @avaliation = current_user.avaliations.build
   end
 
   # GET /avaliations/1/edit
@@ -24,7 +27,7 @@ class AvaliationsController < ApplicationController
   # POST /avaliations
   # POST /avaliations.json
   def create
-    @avaliation = Avaliation.new(avaliation_params)
+    @avaliation = current_user.avaliations.build(avaliation_params)
 
     respond_to do |format|
       if @avaliation.save
@@ -67,8 +70,11 @@ class AvaliationsController < ApplicationController
       @avaliation = Avaliation.find(params[:id])
     end
 
+    def find_channels
+      @courses = Course.all.order('created_at desc')
+    end
     # Only allow a list of trusted parameters through.
     def avaliation_params
-      params.require(:avaliation).permit(:title, :content, :note)
+      params.require(:avaliation).permit(:title, :content, :note, :course_id)
     end
 end
