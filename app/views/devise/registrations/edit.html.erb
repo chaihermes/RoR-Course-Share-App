@@ -1,9 +1,18 @@
 <section class="section">
   <div class="container">
     <div class="columns is-centered">
+    <%# Inclusão do saldo do usuário %>
+      <div class="column border-light is-2 mr2">
+        <h3 class="title is-2"> Saldo </h3>
+        <br>
+        <p>Saldo inicial: <strong>100,00</strong></p><br>
+        <p>Compras:</p><br>
+        <P>Vendas: </P><br>
+      </div>
+
       <div class="column is-4">
 
-      <h2 class="title is-2">Editar <%= resource_name.to_s.humanize %></h2>
+      <h2 class="title is-2">Editar Dados </h2>
       <%# Para o ADMIN: %>
       <%# if has_role?(:admin) %>
         <%# <div class="notification">

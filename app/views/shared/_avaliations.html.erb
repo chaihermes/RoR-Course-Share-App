@@ -1,0 +1,32 @@
+<div class="cloumn is-8">
+    <h3 class="title is-5 has-text-grey-light">Últimas avaliações</h3>
+    <div class="discussions">
+        <% @avaliations.each do |avaliation| %>
+        <div class="columns bb-not-last pv10">
+            <div class="column is-1">
+                <% gravatar_image_tag(avaliation.user.email, class:'border-radius-50', size: 48, alt: avaliation.user.username) %>
+            </div>
+            
+            <div class="cloumn is-8">
+                <%= link_to avaliation do %>
+                    <h3 class="title is-5"><%= avaliation.title %></h3>
+                <% end %>
+
+                <div class="content">
+                    <%= truncate(avaliation.content, length: 140) %>
+                    <p><em><small>Enviado <%= time_ago_in_words(avaliation.created_at) %> atrás em <% if avaliation.course %>
+                        <%= link_to avaliation.course.title, avaliation.course %>
+                        <% end %>
+                        por <%= avaliation.user.username %>
+                    </small></em></p>
+                </div>
+            </div> 
+
+            <div class="column has-text-right">
+                <%= link_to 'Editar', edit_avaliation_path(avaliation), class:'button' %>
+                <%= link_to 'Deletar', avaliation, method: :delete, data: { confirm: 'Você tem certeza?' }, class:'button' %>
+            </div>
+        </div>
+        <% end %>
+    </div>
+</div>
