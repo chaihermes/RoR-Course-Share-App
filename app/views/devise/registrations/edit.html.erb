@@ -2,6 +2,7 @@
   <div class="container">
     <div class="columns is-centered">
     <%# Inclusão do saldo do usuário %>
+
       <div class="column border-light is-2 mr2">
         <h3 class="title is-2"> Saldo </h3>
         <br>
@@ -10,9 +11,11 @@
         <P>Vendas: </P><br>
       </div>
 
-      <div class="column is-4">
 
-      <h2 class="title is-2">Editar Dados </h2>
+      <div class="column border-light is-centered is-5">
+
+      <h3 class="title is-2">Editar dados </h3>
+
       <%# Para o ADMIN: %>
       <%# if has_role?(:admin) %>
         <%# <div class="notification">
@@ -67,7 +70,7 @@
 
         <hr />
         <h3 class="title is-5">Cancelar minha conta</h3>
-        <p>Não está satisfeito? <%= link_to "Cancelar minha conta", registration_path(resource_name), data: { confirm: "Você tem certeza?" }, method: :delete %></p>
+        <p >Não está satisfeito? <%= link_to "Cancelar minha conta", registration_path(resource_name), data: { confirm: "Você tem certeza?" }, method: :delete %></p>
 
       </div>
     </div>
