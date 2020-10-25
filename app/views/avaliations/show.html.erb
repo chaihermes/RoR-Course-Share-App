@@ -16,19 +16,21 @@
       </div>
     </div>
 
-    <div class="content"><%= @avaliation.content %></div>
+
+    <div class="content"><%= markdown(@avaliation.content) %></div>
+
 
     <h2 class="subtitle is-5 has-text-grey"><%= @avaliation.responds.count %> respostas</h2>
 
     <div id="discussion-replies">
-      <%#= render @avaliation.responds %>
+      <%= render @avaliation.responds %>
     </div>
 
     <hr />
 
     <h3 class="subtitle is-3 has-text-grey">Deixe uma resposta</h3>
     <% if user_signed_in? %>
-      <%#= render 'responds/form' %>
+      <%= render 'responds/form' %>
     <% else %>
       <p>Para responder você precisa <%= link_to 'Login', new_user_session_path %>. Ainda não tem conta?
         <%= link_to 'Registre-se', new_user_registration_path %> aqui.</p>

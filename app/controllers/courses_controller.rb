@@ -74,7 +74,7 @@ class CoursesController < ApplicationController
       @course = Course.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
+    # Só permite alguns parâmetros passar. #FIXME: não tá aparecendo a avaliação.
     def course_params
       params.require(:course).permit(:title, :author, :description, :price, :image, :id, :user_id, :avaliation_id)
     end

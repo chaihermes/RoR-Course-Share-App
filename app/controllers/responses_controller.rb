@@ -61,4 +61,5 @@ class ResponsesController < ApplicationController
     def respond_params
         params.require(:respond).permit(:respond)
     end
+
 end

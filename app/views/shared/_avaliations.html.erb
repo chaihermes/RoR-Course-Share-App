@@ -13,7 +13,9 @@
                 <% end %>
 
                 <div class="content">
-                    <%= truncate(avaliation.content, length: 140) %>
+
+                    <%= truncate(strip_markdown(avaliation.content), length: 140) %>
+
                     <p><em><small>Enviado <%= time_ago_in_words(avaliation.created_at) %> atrás em <% if avaliation.course %>
                         <%= link_to avaliation.course.title, avaliation.course %>
                         <% end %>
