@@ -1,0 +1,35 @@
+<div class="box">
+    <article class="media">
+        <div class="media-left">
+            <figure class="image is-48x48">
+                <%= gravatar_image_tag(respond.user.email, class: 'border-radius-50', size: 48, alt: respond.user.username) %>
+            </figure>
+        </div>
+
+        <div class="media-content">
+            <div class="content">
+                <p>
+                    <strong><%= respond.user.username %></strong> <small><%= time_ago_in_words(respond.created_at) %></small><br/>
+                    <%= markdown(respond.respond) %>
+                </p>
+            </div>
+
+            <nav class="level is-mobile">
+                <div class="level-left">
+                    <a class="level-item">
+                        <%= link_to edit_avaliation_respond_path(respond.avaliation, respond) do %>
+                        <span class="icon is-small"> <i class="fa fa-pencil"></i></span>
+                        <% end %>
+                    </a>
+
+                    <a class="level-item">
+                        <%= link_to [respond.avaiation, respond], method: :delete, data: { confirm: "Você tem certeza?" } do %>
+                        <span class="icon is-small"><i class="fa fa-trash-o"></i></span>
+                        <% end %>
+                    </a>
+                </div>
+            </nav>
+            <% end %>
+        </div>
+    </article>
+</div>

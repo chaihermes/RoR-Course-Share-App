@@ -7,11 +7,14 @@ class CoursesController < ApplicationController
   # GET /courses.json
   def index
     @courses = Course.all.order("created_at desc")
+    @avaliations = Avaliation.all.order('created_at desc')
   end
 
   # GET /courses/1
   # GET /courses/1.json
   def show
+    @avaliations = Avaliation.where('course_id = ?', @course.id)
+    @courses = Course.all
   end
 
   # GET /courses/new
@@ -30,7 +33,8 @@ class CoursesController < ApplicationController
 
     respond_to do |format|
       if @course.save
-        format.html { redirect_to @course, notice: 'Course was successfully created.' }
+        format.html { redirect_to courses_path, notice: 'Course was successfully created.' }
+        #redirect_to alterado de @course para courses_path
         format.json { render :show, status: :created, location: @course }
       else
         format.html { render :new }
@@ -44,7 +48,8 @@ class CoursesController < ApplicationController
   def update
     respond_to do |format|
       if @course.update(course_params)
-        format.html { redirect_to @course, notice: 'Course was successfully updated.' }
+        format.html { redirect_to courses_path, notice: 'Course was successfully updated.' }
+        #redirect_to alterado de @courses para courses_path
         format.json { render :show, status: :ok, location: @course }
       else
         format.html { render :edit }
@@ -69,8 +74,8 @@ class CoursesController < ApplicationController
       @course = Course.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
+    # Só permite alguns parâmetros passar. #FIXME: não tá aparecendo a avaliação.
     def course_params
-      params.require(:course).permit(:title, :author, :description, :price, :image)
+      params.require(:course).permit(:title, :author, :description, :price, :image, :id, :user_id, :avaliation_id)
     end
 end

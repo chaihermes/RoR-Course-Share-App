@@ -1,19 +1,39 @@
-<p id="notice"><%= notice %></p>
+<div class="columns">
+  <div class="column is-8">
+    <h1 class="title is-2 has-text-grey discussion-title"><%= @avaliation.title %></h1>
+    <h3 class="subtitle is-5 has-text-grey-lighter">by <%= @avaliation.user.username %> in <%= link_to @avaliation.course.title, @avaliation.course %></h3>
 
-<p>
-  <strong>Title:</strong>
-  <%= @avaliation.title %>
-</p>
+    <div class="level">
+      <div class="level-left"></div>
+      <div class="level-right">
+        <%# if avaliation_author(@avaliation) %>
+        <div class="buttons">
+          <%= link_to "Editar avaliação", edit_avaliation_path(@avaliation), class:'button' %>
+          <%= link_to "Deletar avaliação", avaliation_path(@avaliation), method: :delete, data: { confirm: "Você tem certeza?"}, class:'button' %>
+        </div>
+        <%# end %>
 
-<p>
-  <strong>Content:</strong>
-  <%= @avaliation.content %>
-</p>
+      </div>
+    </div>
 
-<p>
-  <strong>Note:</strong>
-  <%= @avaliation.note %>
-</p>
+    <div class="content"><%= markdown(@avaliation.content) %></div>
 
-<%= link_to 'Edit', edit_avaliation_path(@avaliation) %> |
-<%= link_to 'Back', avaliations_path %>
+    <h2 class="subtitle is-5 has-text-grey"><%= @avaliation.responds.count %> respostas</h2>
+
+    <div id="discussion-replies">
+      <%= render @avaliation.responds %>
+    </div>
+
+    <hr />
+
+    <h3 class="subtitle is-3 has-text-grey">Deixe uma resposta</h3>
+    <% if user_signed_in? %>
+      <%= render 'responds/form' %>
+    <% else %>
+      <p>Para responder você precisa <%= link_to 'Login', new_user_session_path %>. Ainda não tem conta?
+        <%= link_to 'Registre-se', new_user_registration_path %> aqui.</p>
+    <% end %>
+  </div>
+
+  <%= render 'sidebar' %>
+</div>
