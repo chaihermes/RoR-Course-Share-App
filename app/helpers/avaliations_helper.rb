@@ -7,4 +7,5 @@ module AvaliationsHelper
     def respond_author(respond)
         user_signed_in? && current_user.id == respond.user_id
     end
+
 end

@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :search]
 
 
   # GET /courses
@@ -9,6 +9,28 @@ class CoursesController < ApplicationController
     @courses = Course.all.order("created_at desc")
     @avaliations = Avaliation.all.order('created_at desc')
   end
+  
+
+
+
+  #para a busca - NÃO DEU CERTO
+  # def search
+  #   @courses = Course.where("title LIKE ?", "%" + params[:q] + "%")
+  # end
+
+  def search
+    if params[:search].blank?
+      @courses = Course.all.order("created_at desc")
+    else
+      @courses = Course.search(params)
+    end
+  end
+
+
+
+
+
+
 
   # GET /courses/1
   # GET /courses/1.json

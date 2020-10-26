@@ -9,8 +9,10 @@
 
     <br/>
 
+  
     <%# para o Admin %>
     <% if has_role?(:admin) %>
       <%= link_to 'Novo curso', new_course_path, class:'button is-info' %>
     <% end %>
+
 </div>
