@@ -17,12 +17,12 @@
       <h3 class="title is-2">Editar dados </h3>
 
       <%# Para o ADMIN: %>
-      <%# if has_role?(:admin) %>
-        <%# <div class="notification">
-          <p>You are currently an <strong>admin</strong> of the Discussions application.</p>
+      <% if has_role?(:admin) %>
+        <div class="notification">
+          <p>Você é um <strong>administrador</strong> dessa aplicação.</p>
         </div>
-        <br /> %>
-      <%# end %>
+        <br /> 
+      <% end %>
 
 
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>

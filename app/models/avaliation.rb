@@ -6,4 +6,5 @@ class Avaliation < ApplicationRecord
 
     #Validações:
     validates :title, :content, presence: true  #FIXME: verificar se vou deixar a nota obrigatória
+    resourcify
 end
