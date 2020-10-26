@@ -19,7 +19,9 @@
       <%# Para o ADMIN: %>
       <% if has_role?(:admin) %>
         <div class="notification">
+
           <p>Vocês tem permissão de <strong>administrador</strong> nessa aplicação.</p>
+
         </div>
         <br /> 
       <% end %>
@@ -70,7 +72,7 @@
 
         <hr />
         <h3 class="title is-5">Cancelar minha conta</h3>
-        <p>Não está satisfeito? <%= link_to "Cancelar minha conta", registration_path(resource_name), data: { confirm: "Você tem certeza?" }, method: :delete %></p>
+        <p >Não está satisfeito? <%= link_to "Cancelar minha conta", registration_path(resource_name), data: { confirm: "Você tem certeza?" }, method: :delete %></p>
 
       </div>
     </div>

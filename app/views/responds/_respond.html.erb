@@ -14,6 +14,7 @@
                 </p>
             </div>
 
+
             <% if respond_author(respond) || has_role?(:admin) %>          
                 <nav class="level is-mobile">
                     <div class="level-left">
@@ -22,6 +23,7 @@
                             <span class="icon is-small"> <i class="fa fa-pencil"></i></span>
                             <% end %>
                         </a>
+
 
                         <a class="level-item">
                             <%= link_to [respond.avaiation, respond], method: :delete, data: { confirm: "Você tem certeza?" } do %>
