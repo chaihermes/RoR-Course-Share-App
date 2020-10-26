@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20201026114441) do
+
 
   create_table "avaliations", force: :cascade do |t|
     t.string "title"
@@ -22,6 +24,7 @@ ActiveRecord::Schema.define(version: 20201026114441) do
     t.integer "channel_id"
     t.integer "course_id"
   end
+
 
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -40,13 +43,16 @@ ActiveRecord::Schema.define(version: 20201026114441) do
     t.integer "avaliation_id"
   end
 
-  create_table "discussions", force: :cascade do |t|
-    t.string "title"
-    t.text "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "user_id"
-  end
+
+  # create_table "discussions", force: :cascade do |t|
+  #   t.string "title"
+  #   t.text "content"
+  #   t.datetime "created_at", null: false
+  #   t.datetime "updated_at", null: false
+  #   t.integer "user_id"
+  # end
+
+
 
   create_table "line_items", force: :cascade do |t|
     t.integer "course_id"
@@ -58,13 +64,15 @@ ActiveRecord::Schema.define(version: 20201026114441) do
     t.index ["course_id"], name: "index_line_items_on_course_id"
   end
 
-  create_table "replies", force: :cascade do |t|
-    t.text "reply"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "discussion_id"
-    t.integer "user_id"
-  end
+
+  # create_table "replies", force: :cascade do |t|
+  #   t.text "reply"
+  #   t.datetime "created_at", null: false
+  #   t.datetime "updated_at", null: false
+  #   t.integer "discussion_id"
+  #   t.integer "user_id"
+  # end
+
 
   create_table "responds", force: :cascade do |t|
     t.text "respond"

@@ -52,12 +52,16 @@
 
             <%#Verifica se o usuário está logado. É próprio do rails%>
             <% if user_signed_in? %>
+            <%# Inclusão do saldo inicial %>
+              <%= link_to 'Saldo', edit_user_registration_path, class: "navbar-item button is-dark mr3 " %>
+
+
               <%= link_to 'Cadastrar curso', new_course_path, class: "navbar-item button is-dark" %>
 
                <div class="navbar-item has-dropdown is-hoverable">
-                <%= link_to 'Minha Conta', edit_user_registration_path, class: "navbar-link" %>
+                <%= link_to current_user.username, edit_user_registration_path, class: "navbar-link" %>
                  <div class="navbar-dropdown is-right"> 
-                  <%= link_to current_user.username, edit_user_registration_path, class:"navbar-item" %>
+                  <%= link_to 'Minha conta', edit_user_registration_path, class:"navbar-item" %>
                   <%= link_to "Sair", destroy_user_session_path, method: :delete, class:"navbar-item" %>
                 </div> 
               </div>
