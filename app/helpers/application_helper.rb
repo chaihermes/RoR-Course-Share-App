@@ -2,6 +2,12 @@ module ApplicationHelper
     #Autores
     require 'redcarpet/render_strip'
 
+    #pode passar as permissões para cada tipo de role, desde que tenha a definição do role no ability.rb
+    def has_role?(role)
+        current_user && current_user.has_role?(role)
+    end
+    
+
     class CodeRayify < Redcarpet::Render::HTML
         def block_code(code, language)
             CodeRay.scan(code, language).div

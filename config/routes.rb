@@ -5,7 +5,12 @@ Rails.application.routes.draw do
     resources :responds
   end
 
-  resources :courses
+  resources :courses do
+    #resources :avaliations
+    collection do
+      get :search   #cria uma nova rota para a busca
+    end
+  end
 
   #FIXME: pra msotrar a avaliação e a resposta dentro de cursos
   # resources :courses do
@@ -21,5 +26,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations' }
 
   root 'courses#index'
+
+  #get 'search', to: "courses#search"
 
 end
