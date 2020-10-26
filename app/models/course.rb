@@ -15,6 +15,9 @@ class Course < ApplicationRecord
     validates :title, length: { maximum: 140, too_long: "%{count} caracteres é o máximo permitido."}
     validates :price, length: { maximum: 7 }
 
+    resourcify
+
+
     private
 
     def not_referenced_by_any_line_item

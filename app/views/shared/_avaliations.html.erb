@@ -22,10 +22,13 @@
                 </div>
             </div> 
 
-            <div class="column has-text-right">
-                <%= link_to 'Editar', edit_avaliation_path(avaliation), class:'button' %>
-                <%= link_to 'Deletar', avaliation, method: :delete, data: { confirm: 'Você tem certeza?' }, class:'button' %>
-            </div>
+            <%# Acrescentar o role de admin para que o mesmo tenha poder de editar/excluir avaliações e respostas %>
+            <% if avaliation_author(avaliation) || has_role?(:admin)%>
+                <div class="column has-text-right">
+                    <%= link_to 'Editar', edit_avaliation_path(avaliation), class:'button' %>
+                    <%= link_to 'Deletar', avaliation, method: :delete, data: { confirm: 'Você tem certeza?' }, class:'button' %>
+                </div>
+            <% end %>
         </div>
         <% end %>
     </div>
