@@ -11,13 +11,7 @@ class CoursesController < ApplicationController
   end
   
 
-
-
-  #para a busca - NÃO DEU CERTO
-  # def search
-  #   @courses = Course.where("title LIKE ?", "%" + params[:q] + "%")
-  # end
-
+  #Para a busca
   def search
     if params[:search].blank?
       @courses = Course.all.order("created_at desc")
@@ -28,15 +22,11 @@ class CoursesController < ApplicationController
 
 
 
-
-
-
-
   # GET /courses/1
   # GET /courses/1.json
   def show
-    @avaliations = Avaliation.where('course_id = ?', @course.id)
     @courses = Course.all
+    @avaliations = Avaliation.where('course_id = ?', @course.id)
   end
 
   # GET /courses/new
@@ -98,6 +88,6 @@ class CoursesController < ApplicationController
 
     # Só permite alguns parâmetros passar. #FIXME: não tá aparecendo a avaliação.
     def course_params
-      params.require(:course).permit(:title, :author, :description, :price, :image, :id, :user_id, :avaliation_id)
+      params.require(:course).permit(:title, :author, :description, :price, :image, :user_id, :avaliation_id)
     end
 end

@@ -18,7 +18,7 @@
       <%# @courses é a variável criada no courses.controller pra def index %>
   <% @courses.each do |course| %>
 
-    <div class="instrument border-light">
+    <div class="instrument border-light mr1">
       <div class="instrument-thumb">
          <%= link_to image_tag(course.image_url(:thumb)), course %>
       </div>

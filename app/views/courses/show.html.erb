@@ -36,26 +36,37 @@
       </table>
 
 
-      <%#FIXME: não estou conseguindo mostrar a avaliação com o curso %>
-      <%# <h3 class="subtitle is-4 pt5">Avaliações</h3> %>
-        <%# @avaliations.each do |avaliation| %>
-         <%# if @avaliation.title %>
-          <%# <tr>
-            <td>Título:</td> %>
-            <td><%#= @avaliation.title %></td>
-          <%# </tr> %>
-        <%# end %>
-        <%# end %>
+      <%#FIXME: Inserir um If pra caso não tenha avaliações e outro pra se eu sou o usuário que comprou o curso, aparecer o link para cadastrar a minha avaliação %>
+      <h3 class="subtitle is-4 pt5">Avaliações</h3> 
+       
+          <div class="discussions">
+            <% @avaliations.each do |avaliation| %>
+            <div class="columns bb-not-last pv10">
+            <div class="cloumn is-8">
+                <%= link_to avaliation do %>
+                    <h3 class="title is-5">Nota: <%= avaliation.note %> - <%= avaliation.title %></h3>
+                <% end %>
 
-
-        
+                <div class="content">
+                    <%= truncate(strip_markdown(avaliation.content), length: 140) %>
+                    <p><em><small>Enviado <%= time_ago_in_words(avaliation.created_at) %> atrás em <% if avaliation.course %>
+                        <%= link_to avaliation.course.title, avaliation.course %>
+                        <% end %>
+                        por <%= avaliation.user.username %>
+                    </small></em></p>
+                </div>
+                <hr />
+            </div> 
+          </div>
+        <% end %>
+        </div>        
     </div>
     </div>
     <div class="column is-3 is-offset-1">
       <div class="bg-white pa4 border-radius-3">
         <h4 class="title is-5 has-text-centered"><%= number_to_currency(@course.price) %></h4>
         <p class="has-text-centered mb4">Autor <%= @course.user.username %></p>
-        <%= button_to 'Comprar', line_items_path(course_id: @course), class: 'button is-primary add-to-cart' %>
+        <%= button_to 'Comprar', line_items_path(course_id: @course), class: 'button is-primary add-to-cart ml5' %>
       </div>
     </div>
   </div>

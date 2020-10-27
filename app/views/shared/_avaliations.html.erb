@@ -9,7 +9,11 @@
             
             <div class="cloumn is-8">
                 <%= link_to avaliation do %>
+                <div class="columns mt2">
+                    <h3 class="title is-5 mr2"><%= avaliation.note %></h3>
+
                     <h3 class="title is-5"><%= avaliation.title %></h3>
+                </div>
                 <% end %>
 
                 <div class="content">
