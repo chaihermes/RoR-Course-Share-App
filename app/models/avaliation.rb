@@ -15,5 +15,5 @@ class Avaliation < ApplicationRecord
     def should_generate_new_friendly_id?
         title_changed?
     end
-    
+  
 end

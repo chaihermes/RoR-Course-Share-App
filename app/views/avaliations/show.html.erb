@@ -6,7 +6,9 @@
     <div class="level">
       <div class="level-left"></div>
       <div class="level-right">
+
         <% if avaliation_author(@avaliation) || has_role?(:admin) %>
+
         <div class="buttons">
           <%= link_to "Editar avaliação", edit_avaliation_path(@avaliation), class:'button' %>
           <%= link_to "Deletar avaliação", avaliation_path(@avaliation), method: :delete, data: { confirm: "Você tem certeza?"}, class:'button' %>
@@ -16,7 +18,9 @@
       </div>
     </div>
 
+
     <div class="content"><%= markdown(@avaliation.content) %></div>
+
 
     <h2 class="subtitle is-5 has-text-grey"><%= @avaliation.responds.count %> respostas</h2>
 

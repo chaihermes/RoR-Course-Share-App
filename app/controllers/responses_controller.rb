@@ -5,7 +5,8 @@ class ResponsesController < ApplicationController
 
 
     def create
-        @respond = @avaliation.responds.create(params[:respond]).permit(:respond, :avaliation_id)
+
+        @respond = @avaliation.responses.create(params[:respond]).permit(:respond, :avaliation_id)
         @respond.user_id = current_user.id
 
         #Para responder uma avaliação
@@ -61,4 +62,6 @@ class ResponsesController < ApplicationController
     def respond_params
         params.require(:respond).permit(:respond)
     end
+
+
 end

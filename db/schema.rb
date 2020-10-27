@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20201026122420) do
+
 
   create_table "avaliations", force: :cascade do |t|
     t.string "title"
@@ -23,6 +25,7 @@ ActiveRecord::Schema.define(version: 20201026122420) do
     t.integer "course_id"
     t.string "slug"
   end
+
 
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -41,6 +44,7 @@ ActiveRecord::Schema.define(version: 20201026122420) do
     t.integer "avaliation_id"
     t.string "slug"
   end
+
 
   create_table "discussions", force: :cascade do |t|
     t.string "title"
@@ -61,6 +65,9 @@ ActiveRecord::Schema.define(version: 20201026122420) do
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
+
+
+
   create_table "line_items", force: :cascade do |t|
     t.integer "course_id"
     t.integer "cart_id"
@@ -79,6 +86,8 @@ ActiveRecord::Schema.define(version: 20201026122420) do
     t.integer "user_id"
   end
 
+
+
   create_table "responds", force: :cascade do |t|
     t.text "respond"
     t.datetime "created_at", null: false
@@ -86,6 +95,17 @@ ActiveRecord::Schema.define(version: 20201026122420) do
     t.integer "avaliation_id"
     t.integer "user_id"
     t.string "slug"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.string "resource_type"
+    t.integer "resource_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
+    t.index ["name"], name: "index_roles_on_name"
+    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
   end
 
   create_table "roles", force: :cascade do |t|
