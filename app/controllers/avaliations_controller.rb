@@ -1,6 +1,7 @@
 class AvaliationsController < ApplicationController
   before_action :set_avaliation, only: [:show, :edit, :update, :destroy]
-  before_action :find_channels, only: [:index, :show, :new, :edit]
+  #before_action :find_courses, only: [:index, :show, :new, :edit]
+  before_action :find_product, only: [:index, :show, :new, :edit]
   before_action :authenticate_user!, except: [:index, :show]
 
   # GET /avaliations
@@ -26,19 +27,42 @@ class AvaliationsController < ApplicationController
 
   # POST /avaliations
   # POST /avaliations.json
+  # def create
+  #   @avaliation = current_user.avaliations.build(avaliation_params)
+    
+  #   respond_to do |format|
+  #     if @avaliation.save
+  #       format.html { redirect_to @avaliation, notice: 'Avaliation was successfully created.' }
+  #       format.json { render :show, status: :created, location: @avaliation }          
+  #     else
+  #       format.html { render :new }
+  #       format.json { render json: @avaliation.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
+
+
+
+
+
   def create
     @avaliation = current_user.avaliations.build(avaliation_params)
-
+    
     respond_to do |format|
       if @avaliation.save
-        format.html { redirect_to @avaliation, notice: 'Avaliation was successfully created.' }
-        format.json { render :show, status: :created, location: @avaliation }
+        format.html { redirect_to @avaliation, notice: 'Avaliação criada com sucesso.' }
+        format.json { render :show, status: :created, location: @avaliation }          
       else
         format.html { render :new }
         format.json { render json: @avaliation.errors, status: :unprocessable_entity }
       end
     end
   end
+
+
+
+
+
 
   # PATCH/PUT /avaliations/1
   # PATCH/PUT /avaliations/1.json
@@ -70,11 +94,27 @@ class AvaliationsController < ApplicationController
       @avaliation = Avaliation.find(params[:id])
     end
 
-    def find_channels
-      @courses = Course.all.order('created_at desc')
+    # def find_courses
+    #   @courses = Course.all.order('created_at desc')
+    # end
+
+
+
+    def find_product
+      @products = Product.all.order('created_at desc')
     end
+    
+    
+
     # Only allow a list of trusted parameters through.
+    # def avaliation_params
+    #   params.require(:avaliation).permit(:title, :content, :note, :course_id)
+    # end
+
+
     def avaliation_params
-      params.require(:avaliation).permit(:title, :content, :note, :course_id)
+      params.require(:avaliation).permit(:title, :content, :note, :product_id)
     end
+
+    
 end

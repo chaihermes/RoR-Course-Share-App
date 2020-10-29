@@ -1,8 +1,8 @@
 <div class="cloumn is-8">
-    <h3 class="title is-5 has-text-grey-light">Últimas avaliações</h3>
+    <h3 class="title is-5 has-text-grey-light mt4">Últimas avaliações</h3>
     <div class="discussions">
         <% @avaliations.each do |avaliation| %>
-        <div class="columns bb-not-last pv10">
+        <div class="columns bb-not-last pv10 mt3">
             <div class="column is-1">
                 <% gravatar_image_tag(avaliation.user.email, class:'border-radius-50', size: 48, alt: avaliation.user.username) %>
             </div>
@@ -14,8 +14,10 @@
 
                 <div class="content">
                     <%= truncate(strip_markdown(avaliation.content), length: 140) %>
-                    <p><em><small>Enviado <%= time_ago_in_words(avaliation.created_at) %> atrás em <% if avaliation.course %>
-                        <%= link_to avaliation.course.title, avaliation.course %>
+                    <p><em><small>Enviado <%= time_ago_in_words(avaliation.created_at) %> atrás em <%# if avaliation.course %> 
+                    <% if avaliation.product %>
+                        <%#= link_to avaliation.course.title, avaliation.course %>
+                        <%= link_to avaliation.product.title, avaliation.product %> 
                         <% end %>
                         por <%= avaliation.user.username %>
                     </small></em></p>

@@ -1,5 +1,7 @@
 <div class="keep-shopping pv1 mt4 has-text-right">
-  <%= link_to 'Continue comprando', courses_path, class: 'button is-primary' %>
+  <%#= link_to 'Continue comprando', courses_path, class: 'button is-primary' %>
+  <%= link_to 'Continue comprando', products_path, class: 'button is-primary' %>
+
 </div>
 <hr />
 <section class="section">
@@ -15,5 +17,12 @@
         <span class="f5 has-text-grey">Total:</span> <%= number_to_currency(@cart.total_price) %>
       </h4>
     </div>
+  </div>
+
+  <div class="columns ml20">
+      <div class="column ">
+      <%#FIXME: ajustar a def do botão %>
+        <%= button_to 'Finalizar compra', @cart, data: { confirm: "Você tem certeza? " }, class: "button is-dark" %>
+      </div>
   </div>
 </section>

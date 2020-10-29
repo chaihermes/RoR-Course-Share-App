@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201026122420) do
+ActiveRecord::Schema.define(version: 20201029120610) do
 
   create_table "avaliations", force: :cascade do |t|
     t.string "title"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20201026122420) do
     t.integer "channel_id"
     t.integer "course_id"
     t.string "slug"
+    t.integer "product_id"
   end
 
   create_table "carts", force: :cascade do |t|
@@ -29,26 +30,26 @@ ActiveRecord::Schema.define(version: 20201026122420) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "courses", force: :cascade do |t|
-    t.string "title"
-    t.string "author"
-    t.text "description"
-    t.decimal "price", precision: 5, scale: 2, default: "0.0"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "image"
-    t.integer "user_id"
-    t.integer "avaliation_id"
-    t.string "slug"
-  end
+  # create_table "courses", force: :cascade do |t|
+  #   t.string "title"
+  #   t.string "author"
+  #   t.text "description"
+  #   t.decimal "price", precision: 5, scale: 2, default: "0.0"
+  #   t.datetime "created_at", null: false
+  #   t.datetime "updated_at", null: false
+  #   t.string "image"
+  #   t.integer "user_id"
+  #   t.integer "avaliation_id"
+  #   t.string "slug"
+  # end
 
-  create_table "discussions", force: :cascade do |t|
-    t.string "title"
-    t.text "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "user_id"
-  end
+  # create_table "discussions", force: :cascade do |t|
+  #   t.string "title"
+  #   t.text "content"
+  #   t.datetime "created_at", null: false
+  #   t.datetime "updated_at", null: false
+  #   t.integer "user_id"
+  # end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
@@ -67,17 +68,32 @@ ActiveRecord::Schema.define(version: 20201026122420) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "quantity", default: 1
+    t.integer "product_id"
     t.index ["cart_id"], name: "index_line_items_on_cart_id"
     t.index ["course_id"], name: "index_line_items_on_course_id"
   end
 
-  create_table "replies", force: :cascade do |t|
-    t.text "reply"
+  create_table "products", force: :cascade do |t|
+    t.string "product"
+    t.string "title"
+    t.text "description"
+    t.string "author"
+    t.decimal "price"
+    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "discussion_id"
     t.integer "user_id"
+    t.integer "avaliation_id"
+    t.string "slug"
   end
+
+  # create_table "replies", force: :cascade do |t|
+  #   t.text "reply"
+  #   t.datetime "created_at", null: false
+  #   t.datetime "updated_at", null: false
+  #   t.integer "discussion_id"
+  #   t.integer "user_id"
+  # end
 
   create_table "responds", force: :cascade do |t|
     t.text "respond"

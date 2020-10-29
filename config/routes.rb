@@ -1,23 +1,24 @@
 Rails.application.routes.draw do
-
-  #deixa o responds dentro de avaliations:
+  resources :products
+  
+  #deixa o responds dentro de avaliations:    Se comentar essa parte, as respotas "se perdem"
   resources :avaliations do 
     resources :responds
   end
 
-  resources :courses do
-    #resources :avaliations
+  # resources :courses do
+  #   resources :avaliations    #exibe as avaliações de cada curso
+  #   collection do
+  #     get :search   #cria uma nova rota para a busca
+  #   end
+  # end
+
+  resources :products do  
+    resources :avaliations       #exibe as avaliações de cada curso
     collection do
       get :search   #cria uma nova rota para a busca
     end
   end
-
-  #FIXME: pra msotrar a avaliação e a resposta dentro de cursos
-  # resources :courses do
-  #   resources :avaliations do
-  #     resources :responds
-  #   end
-  # end
 
   resources :avaliations
   resources :line_items
@@ -25,8 +26,7 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { registrations: 'registrations' }
 
-  root 'courses#index'
-
-  #get 'search', to: "courses#search"
+  #root 'courses#index'
+  root 'products#index'
 
 end

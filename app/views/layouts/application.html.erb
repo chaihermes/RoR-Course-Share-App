@@ -2,7 +2,8 @@
 <html>
   <head>
     <title>Course Share App</title>
-   <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= csrf_meta_tags %>
     <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -28,14 +29,15 @@
         <% end  %>
         <%# Tentativa de inserir o campo de busca %>
           <div class="navbar-item">   
-            <%= form_tag search_courses_path, method: :get do %>  
+            <%#= form_tag search_courses_path, method: :get do %>  
+            <%= form_tag search_products_path, method: :get do %>  
+
               <div class="navbar-item">
               <%= text_field_tag :search, nil, placeholder: "Buscar", class:"navbar-item input mr2" %>
               <%= submit_tag "Buscar", class:"navbar-item button is-dark" %>
               </div>
             <% end %>       
-            <%# <input class="navbar-item input" type="text" placeholder="Buscar" aria-label="Buscar" />
-            <button class="navbar-item button is-dark" type="submit">Buscar</button> %>
+            
           </div> 
 
       <div class="navbar-burger burger" data-target="navbar">
@@ -70,12 +72,17 @@
             <%# Inclusão do saldo inicial %>
               <%= link_to 'Saldo', edit_user_registration_path, class: "navbar-item button is-dark mr3 " %>
 
-              <%= link_to 'Cadastrar curso', new_course_path, class: "navbar-item button is-dark" %>
+              <%#= link_to 'Cadastrar curso', new_course_path, class: "navbar-item button is-dark" %>
+              <%= link_to 'Cadastrar curso', new_product_path, class: "navbar-item button is-dark" %>
+
 
                <div class="navbar-item has-dropdown is-hoverable">
                 <%= link_to 'Minha Conta', edit_user_registration_path, class: "navbar-link" %>
                  <div class="navbar-dropdown is-right"> 
                   <%= link_to current_user.username, edit_user_registration_path, class:"navbar-item" %>
+                  <% if has_role?(:admin) %>
+                    <%= link_to 'Área administrativa', '#', class:"navbar-item" %>
+                  <% end %>
                   <%= link_to "Sair", destroy_user_session_path, method: :delete, class:"navbar-item" %>
                 </div> 
               </div>
@@ -103,4 +110,10 @@
     <%= yield %>
   </div>
   </body>
+
+  <footer class="footer mt7">
+    <div class="content has-text-centered">
+      <p >Desenvolvido por Chaiana</p>
+    </div>
+  </footer>
 </html>

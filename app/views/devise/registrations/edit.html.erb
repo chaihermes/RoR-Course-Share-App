@@ -3,12 +3,13 @@
     <div class="columns is-centered">
       <%# Inclusão do saldo do usuário %>
 
-      <div class="column border-light is-2 mr2">
-        <h3 class="title is-2"> Saldo </h3>
+      <div class="column border-light is-4 mr6">
+        <h3 class="title is-2"> Saldo atualizado </h3>
         <br>
-        <p>Saldo inicial: <strong>100,00</strong></p><br>
-        <p>Compras:</p><br>
-        <P>Vendas: </P><br>
+        <p class="title  is-5">Saldo atual: <strong class="level-right"> <%=  %> </strong></p><br>
+        <p class="level">Saldo inicial: <strong class="level-right"> $100,00</strong></p>
+        <p class="level">Compras: <strong class="level-right"><%= number_to_currency(@cart.total_price) %> </strong></p>
+        <P class="level">Vendas: </P><br>
       </div>
 
 
@@ -19,7 +20,7 @@
       <%# Para o ADMIN: %>
       <% if has_role?(:admin) %>
         <div class="notification">
-          <p>Vocês tem permissão de <strong>administrador</strong> nessa aplicação.</p>
+          <p>Você tem permissão de <strong>administrador</strong> nessa aplicação.</p>
         </div>
         <br /> 
       <% end %>
@@ -60,7 +61,7 @@
 
           <div class="field">
             <div class="control">
-              <%= f.input :current_password, hint: "É preciso informar a senha atual", required: true, input_html: { class: "input"}, wrapper: false, label_html: { class: "label" } %>
+              <%= f.input :current_password, hint: "É preciso informar a senha atual ", required: true, input_html: { class: "input"}, wrapper: false, label_html: { class: "label" } %>
             </div>
         </div>
 

@@ -1,42 +1,73 @@
+<div class="columns">
+  <div class="column is-8 is-centered">
+    <%= simple_form_for(@avaliation) do |f| %>
+      <%= f.error_notification %>
 
-<%= simple_form_for(@avaliation) do |f| %>
-  <%= f.error_notification %>
+        <div class="field">
+          <div class="control">
+            <%= f.input :title, label: "Título", required: true, input_html: { class:'input' }, wrapper: false, label_html: { class: 'label' } %>
+          </div>
+        </div>
 
-    <div class="field">
-      <div class="control">
-        <%= f.input :title, required: true, input_html: { class:'input' }, wrapper: false, label_html: { class: 'label' } %>
-      </div>
-    </div>
+        <div class="field">
+          <div class="control">
+            <%= f.input :content, label: "Descrição", required: true, input_html: { class:'textarea' }, wrapper: false, label_html: { class: 'label' } %>
+          </div>
+        </div>
 
-    <div class="field">
-      <div class="control">
-        <%= f.input :content, required: true, input_html: { class:'textarea' }, wrapper: false, label_html: { class: 'label' } %>
-      </div>
-    </div>
+        <div class="field">
+          <div class="control">
+            <%= f.input :note, label: "Nota", required: true, input_html: { class:'input' }, wrapper: false, label_html: { class: 'label' } %>
+          </div>
+        </div>
 
-    <div class="field">
-      <div class="control">
-        <%= f.input :note, required: true, input_html: { class:'input' }, wrapper: false, label_html: { class: 'label' } %>
-      </div>
-    </div>
+        <%# <div class="field">
+          <label class="label"> Curso </label>
+          <div class="control has-icons-left">
+            <span class="select">
+              <%= f.input_field :course_id, collection: @courses.map { |c| [c.title, c.id] }, prompt: "Selecione o curso"  %>
+            <%# </span>
+            
+            <span class="icon is-small is-left">
+              <i class="fa fa-tag"></i>
+            </span>
+          </div>
+        </div>  %>
 
-    <div class="field">
-      <label class="label"> Curso </label>
-      <div class="control has-icons-left">
-        <span class="select">
-          <%= f.input_field :course_id, collection: @courses.map { |c| [c.title, c.id] }, prompt: "Selecione o curso"  %>
-        </span>
-        
-        <span class="icon is-small is-left">
-          <i class="fa fa-tag"></i>
-        </span>
-      </div>
-    </div>
 
-    <div class="field">
-      <div class="control">
-        <%= f.button :submit, "Salvar avaliação", class:"button is-primary" %>
-      </div>
-    </div>
-  
-<% end %>
+
+
+
+        <div class="field">
+          <label class="label"> Curso </label>
+          <div class="control has-icons-left">
+            <span class="select">
+              <%= f.input_field :product_id, collection: @products.map { |pr| [ pr.title, pr.id ] }, prompt: "Selecione o curso"  %>
+            </span>
+            
+            <span class="icon is-small is-left">
+              <i class="fa fa-tag"></i>
+            </span>
+          </div>
+        </div> 
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="field">
+          <div class="control">
+            <%= f.button :submit, "Salvar avaliação", class:"button is-primary" %>
+          </div>
+        </div>
+      
+    <% end %>
+  </div>
+</div>

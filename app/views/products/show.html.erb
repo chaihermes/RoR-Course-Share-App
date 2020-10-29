@@ -1,0 +1,80 @@
+<% content_for :body_class, 'bg-light' %>
+
+<section class="section instrument-show">
+  <div class="columns">
+    <div class="column is-8">
+
+      <h1 class="title is-2"><%= @product.title %></h1>
+
+      <div class="feature-image">
+        <%= image_tag(@product.image_url(:default)) %>
+      </div>
+
+      <div class="content pa4 mt3 bg-white border-radius-3">
+
+      <h3 class="subtitle is-4">Descrição</h3>
+      <%= @product.description %>
+
+
+      <h3 class="subtitle is-4 pt5">Detalhes</h3>
+
+      <table class="table is-narrow">
+        <% if @product.title %>
+        <tr>
+          <td class="has-text-weight-bold">Descrição:</td>
+          <td><%= @product.description %></td>
+        </tr>
+        <% end %>
+
+        <% if @product.author %>
+          <tr>
+            <td class="has-text-weight-bold">Autor:</td>
+            <td><%= @product.author %></td>
+          </tr>
+        <% end %>
+
+      </table>
+
+
+         <%#FIXME: Inserir um If pra caso não tenha avaliações e outro pra se eu sou o usuário que comprou o curso, aparecer o link para cadastrar a minha avaliação %>
+      <h3 class="subtitle is-4 pt5">Avaliações</h3> 
+       
+          <div class="discussions">
+            <% @avaliations.each do |avaliation| %>
+            <div class="columns bb-not-last pv10 ma1">
+            <div class="cloumn is-8">
+                <%= link_to avaliation do %>
+                    <h3 class="title is-5">Nota: <%= avaliation.note %> - <%= avaliation.title %></h3>
+                <% end %>
+
+                <div class="content">
+                    <%= truncate(strip_markdown(avaliation.content), length: 140) %>
+                    <p><em><small>Enviado <%= time_ago_in_words(avaliation.created_at) %> atrás em <% if avaliation.product %>
+                        <%= link_to avaliation.product.title, avaliation.product %>
+                        <% end %>
+                        por <%= avaliation.user.username %>
+                    </small></em></p>
+                </div>
+                <hr />
+            </div> 
+          </div>
+        <% end %>
+        </div> 
+
+
+        
+    </div>
+    </div>
+    <div class="column is-3 is-offset-1">
+      <div class="bg-white pa4 border-radius-3">
+        <h4 class="title is-5 has-text-centered"><%= number_to_currency(@product.price) %></h4>
+        <p class="has-text-centered mb4">Autor <%= @product.author %></p>
+        <%= button_to 'Comprar', line_items_path(product_id: @product), class: 'button is-primary add-to-cart ml5' %>
+      </div>
+    </div>
+  </div>
+
+  <% if product_author(@product) %>
+    <%= link_to 'Editar', edit_product_path(@product), class: 'button' %>
+  <% end %>
+</section>

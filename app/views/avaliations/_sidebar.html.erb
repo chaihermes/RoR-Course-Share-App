@@ -2,17 +2,31 @@
     <h3 class="title is-5 has-text-grey-light"> Cursos </h3>
 
     <ul class="list">
-        <% @courses.each do |c| %>
-        <li><%= link_to c.title, c %></li>
+        <%# @courses.each do |c| %>
+        <li><%#= link_to c.title, c %></li>
+        <%# end %>
+    </ul>
+
+    <br/>
+
+    <ul class="list">
+        <% @products.each do |pr| %>
+        <li><%= link_to pr.title, pr %></li>
         <% end %>
     </ul>
 
     <br/>
 
-  
+
+    <%# para o Admin %>
+    <%# if has_role?(:admin) %>
+      <%#= link_to 'Novo curso', new_course_path, class:'button is-info' %>
+    <%# end %>
+
+
     <%# para o Admin %>
     <% if has_role?(:admin) %>
-      <%= link_to 'Novo curso', new_course_path, class:'button is-info' %>
+      <%= link_to 'Novo curso', new_product_path, class:'button is-info' %>
     <% end %>
 
 

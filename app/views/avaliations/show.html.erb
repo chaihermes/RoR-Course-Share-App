@@ -1,7 +1,7 @@
 <div class="columns">
   <div class="column is-8">
     <h1 class="title is-2 has-text-grey discussion-title"><%= @avaliation.title %></h1>
-    <h3 class="subtitle is-5 has-text-grey">by <%= @avaliation.user.username %> in <%= link_to @avaliation.course.title, @avaliation.course %></h3>
+    <h3 class="subtitle is-5 has-text-grey">por <%= @avaliation.user.username %> em <%#= link_to @avaliation.course.title, @avaliation.course %> <%= link_to @avaliation.product.title, @avaliation.product %></h3>
 
     <div class="level">
       <div class="level-left"></div>
@@ -33,8 +33,14 @@
       <p>Para responder você precisa <%= link_to 'Login', new_user_session_path %>. Ainda não tem conta?
         <%= link_to 'Registre-se', new_user_registration_path %> aqui.</p>
     <% end %>
+
+    <br/>
+    <hr />
+     <div class="column mb5">
+      <%= render 'shared/avaliations' %>
+     </div>
   </div>
 
-  <%= render 'shared/avaliations' %>
+ 
   <%= render 'avaliations/sidebar' %>
 </div>
